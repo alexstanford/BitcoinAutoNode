@@ -32,8 +32,9 @@ randPass=`< /dev/urandom tr -dc A-Za-z0-9 | head -c30`
 echo "rpcuser=$randUser" >> $config
 echo "rpcpassword=$randPass" >> $config
 echo "########### Setting up autostart (cron)"
+mv /usr/bin/bitcoind /usr/bin/btcd
 crontab -l > tempcron
-echo "@reboot bitcoind -daemon" >> tempcron
+echo "@reboot btcd -daemon" >> tempcron
 crontab tempcron
 rm tempcron
 reboot
